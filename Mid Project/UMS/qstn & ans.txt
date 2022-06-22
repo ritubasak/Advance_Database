@@ -1,0 +1,78 @@
+1.Display department name where student id is 1114.
+
+Select Department_name 
+from Department 
+where Department_id=(select Department _id 
+from Student 
+where Student-id=1114)
+
+2.Find out in which library When_to_jump book is available and select the location of that library. 
+
+Select Library_name,Location 
+from Library 
+where Books_name='When_to_jump'
+
+3.Find out the faculty_id and passport _no of faculty whose name starts with R and ends with A.
+
+Select faculty_id,faculty_name ,passport_no 
+from faculty 
+where faculty_name like 'J%n' 
+
+4.find out the library id where ritu is allowed.
+
+Select Library_id 
+from information 
+where student_id=(Select student_id 
+from student 
+where First_name='Ritu')
+
+5.Find out the Email_no of Ritu or Jony.
+
+Select Email_no 
+from student_information 
+where student_id in(select student_id 
+from  Student 
+where first_name in('Ritu','Jony')) 
+
+6.Find out the section name of Data structure.
+
+Select section 
+from course_information 
+where course_id= (select course_id 
+from course 
+where Course_name='Data structure')
+
+7.Find the city and Country of a faculty with faculty_id-6021.
+
+Select City,Country 
+from Faculty_information 
+where Passport_no = (select passport_no 
+from Faculty 
+where faculty_id=6021)
+
+8.Write a query to fetch 50% records from the faculty table.
+
+SELECT * 
+FROM faculty WHERE
+faculty_id <= (SELECT COUNT(faculty_id)/2 from faculty);
+
+9.Find Query to get information of a student where the student is not assigned to the department.
+
+Select * from student 
+where Department_id Not in
+(Select Department_id from student);
+
+10.How to get distinct records from the table without using distinct keyword.
+
+Select * from library a 
+where  library_id = (select max(library_id) 
+from library b where  
+a.library_id=b.library_id);
+
+11.Write an SQL query that returns the students (last name only) in department '2004'
+ordered by decreasing id.
+
+SELECT last_name
+FROM student
+WHERE department_id = '2004'
+ORDER BY student_id DESC
